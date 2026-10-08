@@ -61,7 +61,13 @@ circuit_name = track_name.split(" | ")[1]
 
 st.write(f"🏎️ {circuit_name}")
 
-circuit_image = f"circuits/{circuit_name}.png"
+circuit_image = f"Circuits/{circuit_name}.png"
+
+if not os.path.exists(circuit_image):
+    for filename in os.listdir("Circuits"):
+        if filename.lower() == f"{circuit_name}.png".lower():
+            circuit_image = os.path.join("Circuits", filename)
+            break
 
 if os.path.exists(circuit_image):
     st.image(circuit_image, width=550)
